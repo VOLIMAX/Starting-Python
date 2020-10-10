@@ -1,8 +1,9 @@
-import csv
+from collections import Counter, defaultdict
 # K: Номер появи слова
 def n_p_s():
     counter = {}
-    text = "She sells sea shells on the sea shore; The shells that she sells are sea shells I`m sure. So if she sells sea shells on the sea shore, I`m sure that the shells are sea shore shells."
+    text = "She sells sea shells on the sea shore; The shells that she sells are sea shells I`m sure. So if she sells" \
+           " sea shells on the sea shore, I`m sure that the shells are sea shore shells."
     for word in text.split():
         counter[word] = counter.get(word, 0) + 1
         print(counter[word] - 1, end=' ')
@@ -39,6 +40,7 @@ def s_s():
 def elections():
     my_file = open("elections.txt", "r")
     elect = {}
+
     for line in my_file:
         candidate, votes = line.split()
         elect[candidate] = elect.get(candidate, 0) + int(votes)
@@ -116,4 +118,75 @@ def country_city():
         print(place[qq])
 
 
-#country_city()
+# country_city()
+
+# P: Частотний аналіз
+def analysis():
+    my_file = open("analysis.txt", "r")
+    words = {}
+    t = my_file.readline()
+    print(f"Number of strings to read: {t}")
+
+    for line in range(int(t)):
+        line = my_file.readline()
+        for i in line.split():
+            words[i] = words.get(i, 0) + 1
+
+    for i in sorted(words.items(), key=lambda x: (-x[1], x[0])):
+        print(i[0])
+
+
+# analysis()
+# set - забирає повтори і ставить по порядку
+
+# S: Контрольна по наголосам
+def nagolos():
+    file = open("nagolos.txt", "r")
+    accents = {}
+    q = file.readline()
+    print(f"Number of strings to read: {q}")
+
+    for i in range(int(q)):
+        i = file.readline()
+        base_form = i.lower()
+        if base_form not in accents:      # 4 cAnnot cannOt fOund pAge        thE pAge cAnnot be fouNd - не находить 2-гу помилку
+            accents[base_form] = set()    # 4 cAnnot  cannOt  fOund pAge      The PAGE cannot be found - все працює
+        accents[base_form].add(i)
+
+    mistakes = 0
+    homework = file.readline().split()
+    print(f"{accents}\n")
+
+    for word in homework:
+        base_form = word.lower()
+        if base_form in accents and word not in accents[base_form] or len([i for i in word if i.isupper()]) != 1:
+            print(f"Mistake - {word}")
+            mistakes += 1
+
+    print(mistakes)
+
+
+nagolos()
+
+
+# T: Продажі
+def sales():
+    # collections.Counter - вид словаря, который позволяет нам считать количество неизменяемых объектов
+    # (в большинстве случаев, строк)
+    # collections.defaultdict ничем не отличается от обычного словаря за исключением того, что по умолчанию всегда
+    # вызывается функция, возвращающая значение:
+
+    file = open("sales.txt", "r")
+    def_dict = defaultdict(Counter)
+
+    for line in file:
+        customer, product, count = line.split()
+        def_dict[customer][product] += int(count)
+
+    for customer, sale in sorted(def_dict.items(), key=lambda x: x[0]):
+        print(customer, ':', sep='')
+        for product, count in sorted(sale.items(), key=lambda x: x[0]):
+            print(' {} {}'.format(product, count))
+
+
+# sales()
