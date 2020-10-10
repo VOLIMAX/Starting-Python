@@ -147,10 +147,10 @@ def nagolos():
     print(f"Number of strings to read: {q}")
 
     for i in range(int(q)):
-        i = file.readline()
+        i = file.readline().replace("\n", "")
         base_form = i.lower()
-        if base_form not in accents:      # 4 cAnnot cannOt fOund pAge        thE pAge cAnnot be fouNd - не находить 2-гу помилку
-            accents[base_form] = set()    # 4 cAnnot  cannOt  fOund pAge      The PAGE cannot be found - все працює
+        if base_form not in accents:
+            accents[base_form] = set()
         accents[base_form].add(i)
 
     mistakes = 0
@@ -166,7 +166,7 @@ def nagolos():
     print(mistakes)
 
 
-nagolos()
+#nagolos()
 
 
 # T: Продажі
