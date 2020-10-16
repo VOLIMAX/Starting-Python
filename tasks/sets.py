@@ -104,7 +104,57 @@ def guess_the_num():
 
     if asking == commands[2]:
         print(f"The answer is one of these: {sorted(a.difference(b))}")
-#guess_the_num()
+# guess_the_num()
 
 
 # H: Вгадай число - 2
+# I: Поліглоти
+def poliglots():
+    file = open("poliglots.txt", "r")
+    num_of_students = int(file.readline().replace("\n", ""))
+    student_languages = []
+    for student in range(0, num_of_students):
+        num_of_lang = file.readline().replace("\n", "")
+        student_languages.append(set())
+        for lang in range(int(num_of_lang)):
+            lang = file.readline().replace("\n", "")
+            student_languages[student].add(lang)
+
+    print(student_languages)
+
+    all_known = student_languages[0].intersection(student_languages[1], student_languages[2])
+    print(f"Знають усі школярі: \nК-сть мов: {len(all_known)} \nА саме: {all_known} ")
+
+    dif = student_languages[0].union(student_languages[1], student_languages[2])
+    print(f"Мови, які знає хоча б 1 з школярів: {dif}")
+#poliglots()
+
+
+# J: Страйки
+# def bunt():
+#     file = open("bunt.txt", "r")
+#     N, K = [int(s) for s in input().split()]
+#     work_days = set([day for day in range(1, N + 1) if day % 7 not in (6, 0)])
+#     no_strikes = set(work_days)
+#     for party in range(K):
+#         a, b = [int(s) for s in input().split()]
+#         max_strikes = (N - a) // b + 1
+#         no_strikes -= {a + b * i for i in range(max_strikes)}
+#     print(len(work_days) - len(no_strikes))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
