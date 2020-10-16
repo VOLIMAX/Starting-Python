@@ -131,18 +131,22 @@ def poliglots():
 
 
 # J: Страйки
-# def bunt():
-#     file = open("bunt.txt", "r")
-#     N, K = [int(s) for s in input().split()]
-#     work_days = set([day for day in range(1, N + 1) if day % 7 not in (6, 0)])
-#     no_strikes = set(work_days)
-#     for party in range(K):
-#         a, b = [int(s) for s in input().split()]
-#         max_strikes = (N - a) // b + 1
-#         no_strikes -= {a + b * i for i in range(max_strikes)}
-#     print(len(work_days) - len(no_strikes))
+def bunt():
+    file = open("bunt.txt", "r")
+    days, parties = file.readline().split()
+    holidays = {6, 7, 13, 14}
+    strikes = []
 
+    for party in range(int(parties)):
+        start, step = file.readline().split()
+        strikes.append(set(i for i in range(int(start), int(days), int(step))))
+        strikes[party] = strikes[party] - holidays
 
+    strikes = strikes[0].union(strikes[1], strikes[2])
+    print(strikes)
+    print(len(strikes))
+
+#bunt()
 
 
 
