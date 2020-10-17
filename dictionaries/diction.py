@@ -136,7 +136,7 @@ def analysis():
         print(i[0])
 
 
-# analysis()
+#analysis()
 # set - забирає повтори і ставить по порядку
 
 # S: Контрольна по наголосам
@@ -189,4 +189,4 @@ def sales():
             print(' {} {}'.format(product, count))
 
 
-# sales()
+#sales()
