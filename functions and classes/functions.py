@@ -71,14 +71,14 @@ def showNumbers(limit):
 def sum_of_mult(limit):
     sum = 0
     a = []
-    for i in range(limit):
+    for i in range(1, limit+1):
         if i % 3 == 0 or i % 5 == 0:
             a.append(i)
             sum += i
     print(f"The sum of {a} = {sum}")
 
 
-# sum_of_mult(20)
+sum_of_mult(20)
 
 # 6. Write a function called show_stars(rows). If rows is 5, it should print the following:
 def show_stars(rows):
