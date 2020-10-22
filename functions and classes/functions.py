@@ -78,7 +78,7 @@ def sum_of_mult(limit):
     print(f"The sum of {a} = {sum}")
 
 
-sum_of_mult(20)
+#sum_of_mult(20)
 
 # 6. Write a function called show_stars(rows). If rows is 5, it should print the following:
 def show_stars(rows):
@@ -102,7 +102,7 @@ def prime_num(limit):
     print(f"Prime numbers are: {primes}")
 
 
-# prime_num(100)
+prime_num(100)
 
 # Exercise 1
 def shut_down(s):
