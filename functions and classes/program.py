@@ -1,5 +1,6 @@
 from bankomat import ATM
 from Cats import Cat
+from math_related import Rational
 
 
 class Program:
@@ -23,3 +24,10 @@ class Program:
     valera.id = 60
     print(valera.id)
     valera.cash()
+
+    smth = Rational(2, 4, 6, 8)
+    smth.addition()
+    smth.subtraction()
+    smth.mupltiplication()
+    smth.division()
+    smth.comparison()
