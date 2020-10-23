@@ -74,9 +74,4 @@ class ATM:
             print("You typed the wrong letter")
 
 
-valera = ATM(5000)
-valera.id = 60
-print(valera.id)
-valera.cash()
-
 
