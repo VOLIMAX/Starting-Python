@@ -56,47 +56,53 @@ class Converter:
 
     def sell(self): return 0
 
+    buy_USD = [data['buy'] for data in currency_data if data['ccy'] == 'USD']
+    sell_USD = [data['sale'] for data in currency_data if data['ccy'] == 'USD']
+    USD = [float(buy_USD[0]), float(sell_USD[0])]
+
+    buy_EUR = [data['buy'] for data in currency_data if data['ccy'] == 'EUR']
+    sell_EUR = [data['sale'] for data in currency_data if data['ccy'] == 'EUR']
+    EUR = [float(buy_EUR[0]), float(sell_EUR[0])]
+
+    buy_RUR = [data['buy'] for data in currency_data if data['ccy'] == 'RUR']
+    sell_RUR = [data['sale'] for data in currency_data if data['ccy'] == 'RUR']
+    RUR = [float(buy_RUR[0]), float(sell_RUR[0])]
+
+    buy_BTC = [data['buy'] for data in currency_data if data['ccy'] == 'BTC']
+    sell_BTC = [data['sale'] for data in currency_data if data['ccy'] == 'BTC']
+    BTC = [float(buy_BTC[0]), float(sell_BTC[0])]
+
 
 class ConvertUSD(Converter):
     def buy(self):
-        buy_USD = [data['buy'] for data in currency_data if data['ccy'] == 'USD']
-        return f"{self.UAHAmount / float(buy_USD[0])} usd"
+        return f"{self.UAHAmount / self.USD[0]} usd"
 
     def sell(self):
-        sell_USD = [data['sale'] for data in currency_data if data['ccy'] == 'USD']
-        return f"{self.USDAmount * float(sell_USD[0])} grn"
+        return f"{self.USDAmount * self.USD[1]} grn"
 
 
 class ConvertEUR(Converter):
     def buy(self):
-        buy_EUR = [data['buy'] for data in currency_data if data['ccy'] == 'EUR']
-        return f"{self.UAHAmount / float(buy_EUR[0])} eur"
+        return f"{self.UAHAmount / self.EUR[0]} eur"
 
     def sell(self):
-        sell_EUR = [data['sale'] for data in currency_data if data['ccy'] == 'EUR']
-        return f"{self.EURAmount * float(sell_EUR[0])} grn"
+        return f"{self.EURAmount * self.EUR[1]} grn"
 
 
 class ConvertRUR(Converter):
     def buy(self):
-        buy_RUR = [data['buy'] for data in currency_data if data['ccy'] == 'RUR']
-        return f"{self.UAHAmount / float(buy_RUR[0])} rur"
+        return f"{self.UAHAmount / self.RUR[0]} rur"
 
     def sell(self):
-        sell_RUR = [data['sale'] for data in currency_data if data['ccy'] == 'RUR']
-        return f"{self.RURAmount * float(sell_RUR[0])} grn"
+        return f"{self.RURAmount * self.RUR[1]} grn"
 
 
 class ConvertBTC(Converter):
     def buy(self):
-        buy_USD = [data['buy'] for data in currency_data if data['ccy'] == 'USD']
-        buy_BTC = [data['buy'] for data in currency_data if data['ccy'] == 'BTC']
-        return f"{self.UAHAmount / float(buy_BTC[0]) * float(buy_USD[0])} btc"
+        return f"{self.UAHAmount / self.BTC[0] * self.USD[0]} btc"
 
     def sell(self):
-        (sell_USD) = [data['sale'] for data in currency_data if data['ccy'] == 'USD']
-        sell_BTC = [data['sale'] for data in currency_data if data['ccy'] == 'BTC']
-        return f"{self.BTCAmount * float(sell_BTC[0]) * float(sell_USD[0])} grn"
+        return f"{self.BTCAmount * self.BTC[1] * self.USD[1]} grn"
 
 
 test = ConvertBTC()
